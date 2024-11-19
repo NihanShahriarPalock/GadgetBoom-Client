@@ -1,8 +1,13 @@
+import ContactUs from "../components/home/ContactUs"
+import FAQs from "../components/home/FAQs"
 
 
 const Home = () => {
   return (
-    <div>Home</div>
+      <div>
+          <FAQs></FAQs>
+          <ContactUs></ContactUs>
+    </div>
   )
 }
 
