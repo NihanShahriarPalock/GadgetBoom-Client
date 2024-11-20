@@ -14,16 +14,16 @@ const GoogleLogin = () => {
     <div>
       <div className='mt-4 flex items-center space-x-1'>
         <div className='flex-1 h-px sm:w-16 bg-gray-300'></div>
-        <p className='px-3 text-sm text-gray-600 dark:text-gray-200'>OR</p>
+        <p className='px-3 text-sm text-gray-600'>OR</p>
         <div className='flex-1 h-px sm:w-16 bg-gray-300'></div>
       </div>
 
-      <div className='flex flex-col gap-4 md:flex-row justify-center my-4'>
+      <div className='flex flex-col gap-4 md:flex-row justify-center my-4 mx-4'>
         <button
           onClick={handleGoogleLogin}
           aria-label='Login with Google'
           type='button'
-          className='flex items-center justify-center w-full p-4 space-x-4  rounded-md focus:ring-2 focus:ring-offset-1 600 focus:ring-default-600 dark:text-gray-200 border border-gray-800 dark:border-gray-200 '>
+          className='flex items-center justify-center w-full p-4 space-x-4  rounded-md focus:ring-2 focus:ring-offset-1 600 focus:ring-default-600  border border-gray-800  '>
           <svg className='w-4' viewBox='0 0 533.5 544.3'>
             <path
               d='M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z'

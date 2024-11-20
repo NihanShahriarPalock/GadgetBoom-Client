@@ -173,11 +173,11 @@ const Navbar = () => {
               </div>
               {imageMenu && (
                 <ul className='mt-4 z-50 p-2 shadow menu menu-sm dropdown-content bg-base-100 flex flex-col gap-1 '>
-                  <Link to="/dashboard"
+                  <NavLink to="/dashboard/overview"
                     className='text-black text-xl font-normal '
                     >
                     Dashboard
-                  </Link>
+                  </NavLink>
                   <button
                     className='text-red-600 text-xl font-normal '
                     onClick={Logout}>

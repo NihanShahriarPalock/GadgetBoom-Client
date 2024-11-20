@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "../components/socialLogin/GoogleLogin";
 import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 
 const Login = () => {
@@ -15,7 +16,8 @@ const Login = () => {
 
     const onSubmit = (data) => {
       Login(data.email, data.password);
-      console.log(data);
+      // console.log(data);
+      toast.success("Login Successfully")
       navigate("/");
 
     };

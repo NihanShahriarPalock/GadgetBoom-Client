@@ -17,29 +17,31 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
- const onSubmit = async (data) => {
-   const email = data.email;
-   const role = data.role;
-   const photoURL = data.photoURL;
-   const status = role === "buyer" ? "approved" : "pending";
-   const wishlist = [];
-   const userData = { email, role, photoURL, status, wishlist };
+  const onSubmit = async (data) => {
+    // console.log(data);
+    const email = data.email;
+    const role = data.role;
+    const photoURL = data.photoURL;
+    const status = role === "buyer" ? "approved" : "pending";
+    const wishlist = [];
+    const userData = { email, role, photoURL, status, wishlist };
 
-   try {
-     // Create user
-     await CreateUser(data.email, data.password);
-     const res = await axios.post("http://localhost:4000/users", userData);
-     if (res.data.insertedId) {
-       toast.success("Registration successful");
-       navigate("/");
-     } 
-   } catch (error) {
-     console.error(error.message);
-     toast.error(
-       error.response?.data?.message || error.message || "Something went wrong!"
-     );
-   }
- };
+    try {
+      // Create user
+      await CreateUser(data.email, data.password);
+      const res = await axios.post("http://localhost:4000/users", userData);
+      if (res.data.insertedId) {
+        toast.success("Registration successful");
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message ||
+          error.message ||
+          "Something went wrong!"
+      );
+    }
+  };
 
   return (
     <div>
@@ -62,7 +64,6 @@ const Register = () => {
                     type='text'
                     name='name'
                     autoComplete='displayName'
-                    id=''
                     placeholder='Enter Your Name'
                     className='px-4 py-1 w-full focus:outline-0  bg-white text-gray-900  '
                     {...register("name", { required: true })}
@@ -79,7 +80,7 @@ const Register = () => {
                   <input
                     type='email'
                     name='email'
-                    id=''
+                    autoComplete='email'
                     placeholder='Enter Your Email'
                     className='px-4 py-1 w-full focus:outline-0  bg-white text-gray-900 '
                     {...register("email", { required: true })}
@@ -104,6 +105,20 @@ const Register = () => {
                   />
                   {errors.photoURL && (
                     <p className='text-red-600'>Image is required</p>
+                  )}
+                </fieldset>
+              </div>
+              <div>
+                <fieldset className='border border-solid border-gray-300 p-3 w-full rounded'>
+                  <legend className=' font-medium text-gray-900 '>Role</legend>
+                  <select
+                    className='select select-bordered select-lg w-full'
+                    {...register("role", { required: true })}>
+                    <option value='buyer'>Buyer</option>
+                    <option value='seller'>Seller</option>
+                  </select>
+                  {errors.role && (
+                    <p className='text-red-600'>Role is required</p>
                   )}
                 </fieldset>
               </div>

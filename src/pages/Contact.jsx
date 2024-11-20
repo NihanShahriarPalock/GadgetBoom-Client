@@ -5,15 +5,16 @@ import useAuth from "../hooks/useAuth";
 const Contact = () => {
   const { user } = useAuth();
   // console.log(user);
-  const handleSubmit = () => {
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Account Created Successful",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-   }
+const handleSubmit = (event) => {
+  event.preventDefault(); 
+  Swal.fire({
+    position: "center",
+    icon: "success",
+    title: "Message Sent Successfully!",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+};
   return (
     <div>
       <div className='w-full lg:w-3/5 mx-2 lg:mx-auto my-8 lg:my-12'>
@@ -111,29 +112,29 @@ const Contact = () => {
                   />
                 </div>
               </div>
-            </form>
 
-            <div className='flex items-center justify-center md:justify-end py-4 px-8'>
-              <button
-                type='submit'
-                className='py-2 px-4 md:py-4 md:px-6 bg-gray-800 rounded-md border-2 border-white flex items-center gap-2 hover:scale-95 transition-all'>
-                <span className='text-xl text-white'>Submit</span>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='icon icon-tabler icon-tabler-brand-telegram'
-                  width='30'
-                  height='30'
-                  viewBox='0 0 24 24'
-                  strokeWidth='1.5'
-                  stroke='#fff'
-                  fill='none'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'>
-                  <path stroke='none' d='M0 0h24v24H0z' fill='none' />
-                  <path d='M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4' />
-                </svg>
-              </button>
-            </div>
+              <div className='flex items-center justify-center md:justify-end py-4 px-8'>
+                <button
+                  type='submit'
+                  className='py-2 px-4 md:py-4 md:px-6 bg-gray-800 rounded-md border-2 border-white flex items-center gap-2 hover:scale-95 transition-all'>
+                  <span className='text-xl text-white'>Submit</span>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='icon icon-tabler icon-tabler-brand-telegram'
+                    width='30'
+                    height='30'
+                    viewBox='0 0 24 24'
+                    strokeWidth='1.5'
+                    stroke='#fff'
+                    fill='none'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'>
+                    <path stroke='none' d='M0 0h24v24H0z' fill='none' />
+                    <path d='M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4' />
+                  </svg>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
