@@ -16,7 +16,7 @@ const SellerRoute = ({children}) => {
      return children;
    }
 
-  return <Navigate to='/' state={{ from: location }} replace />;
+  return <Navigate to='/login' state={{ from: location }} replace />;
 };
 SellerRoute.propTypes = {
   children: PropTypes.node,

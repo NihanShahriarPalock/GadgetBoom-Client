@@ -4,6 +4,22 @@ import useUserData from "../../hooks/useUserData";
 import { MdOutlineInventory2 } from "react-icons/md";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import useAuth from "../../hooks/useAuth";
+import { FaRegHeart } from "react-icons/fa";
+
+
+const buyerRoutes = [
+  {
+    id: 1,
+    route: "/dashboard/wishlist",
+    title: "My Wishlists",
+    icon: <FaRegHeart />,
+  },
+ 
+];
+
+
+
+
 
 
 const sellerRoutes = [
@@ -20,6 +36,11 @@ const sellerRoutes = [
     icon: <IoMdAddCircleOutline />,
   },
 ];
+
+
+
+
+
 const Sidebar = () => {
   const userData = useUserData();
   const { Logout } = useAuth();
@@ -98,6 +119,23 @@ const Sidebar = () => {
                 <span>Home</span>
               </NavLink>
             </li>
+
+            {/* for buyer */}
+            {userData.role === "buyer" &&
+              buyerRoutes.map((route) => (
+                <li
+                  key={route.id}
+                  className='p-2 border border-black rounded-md '>
+                  <NavLink
+                    className='flex gap-1 justify-center items-center'
+                    to={route.route}>
+                    <>{route.icon}</>
+                    <p>{route.title}</p>
+                  </NavLink>
+                </li>
+              ))}
+            
+            {/* for seller */}
             {userData.role === "seller" &&
               sellerRoutes.map((route) => (
                 <li
@@ -114,9 +152,7 @@ const Sidebar = () => {
             <li
               className='p-2 border border-black rounded-md '
               onClick={() => Logout()}>
-              <button className='text-center'>
-                Logout
-              </button>
+              <button className='text-center'>Logout</button>
             </li>
           </ul>
         </div>
