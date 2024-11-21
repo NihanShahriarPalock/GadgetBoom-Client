@@ -1,8 +1,8 @@
 import { IoMdSearch } from "react-icons/io";
 
-const SearchBar = () => {
+const SearchBar = ({ handleSearch }) => {
   return (
-    <form className='flex items-center gap-[2px]'>
+    <form className='flex items-center gap-[2px]' onSubmit={handleSearch}>
       <input
         type='text'
         name='search'
