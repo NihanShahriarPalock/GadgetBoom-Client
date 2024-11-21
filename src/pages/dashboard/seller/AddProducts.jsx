@@ -145,7 +145,7 @@ const AddProducts = () => {
               type='text'
               placeholder='Image URL'
               className='w-full border border-black p-2 rounded-md'
-              {...register("category", { required: true })}
+              {...register("imageURL", { required: true })}
             />
             {errors.imageURL && (
               <p className='text-red-600'>Image URL is required</p>
