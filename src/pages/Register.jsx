@@ -19,12 +19,14 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     // console.log(data);
+    const name = data.name;
     const email = data.email;
     const role = data.role;
     const photoURL = data.photoURL;
     const status = role === "buyer" ? "approved" : "pending";
     const wishlist = [];
-    const userData = { email, role, photoURL, status, wishlist };
+    const cartlist = [];
+    const userData = { name, email, role, photoURL, status, wishlist, cartlist };
 
     try {
       // Create user

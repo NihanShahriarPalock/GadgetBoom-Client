@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { IoMdSearch } from "react-icons/io";
 
 const SearchBar = ({ handleSearch }) => {

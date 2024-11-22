@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import useUserData from "../../hooks/useUserData";
-import { MdOutlineInventory2 } from "react-icons/md";
+import { MdOutlineInventory2, MdOutlineShoppingCart, MdPeopleOutline } from "react-icons/md";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import useAuth from "../../hooks/useAuth";
 import { FaRegHeart } from "react-icons/fa";
+import { GrLogout } from "react-icons/gr";
 
 
 const buyerRoutes = [
@@ -14,12 +15,13 @@ const buyerRoutes = [
     title: "My Wishlists",
     icon: <FaRegHeart />,
   },
- 
+  {
+    id: 2,
+    route: "/dashboard/cartlist",
+    title: "My Carts",
+    icon: <MdOutlineShoppingCart />,
+  },
 ];
-
-
-
-
 
 
 const sellerRoutes = [
@@ -34,6 +36,15 @@ const sellerRoutes = [
     route: "/dashboard/add-products",
     title: "Add Products",
     icon: <IoMdAddCircleOutline />,
+  },
+];
+
+const adminRoutes = [
+  {
+    id: 1,
+    route: "/dashboard/all-users",
+    title: "View Users",
+    icon: <MdPeopleOutline />,
   },
 ];
 
@@ -134,7 +145,7 @@ const Sidebar = () => {
                   </NavLink>
                 </li>
               ))}
-            
+
             {/* for seller */}
             {userData.role === "seller" &&
               sellerRoutes.map((route) => (
@@ -149,10 +160,33 @@ const Sidebar = () => {
                   </NavLink>
                 </li>
               ))}
+
+            {/* for admin */}
+            {userData.role === "admin" &&
+              adminRoutes.map((route) => (
+                <li
+                  key={route.id}
+                  className='p-2 border border-black rounded-md '>
+                  <NavLink
+                    className='flex gap-1 justify-center items-center'
+                    to={route.route}>
+                    <>{route.icon}</>
+                    <p>{route.title}</p>
+                  </NavLink>
+                </li>
+              ))}
             <li
-              className='p-2 border border-black rounded-md '
+              className='p-2 border border-black rounded-md  '
               onClick={() => Logout()}>
-              <button className='text-center'>Logout</button>
+              <div className='flex flex-row gap-1 justify-center items-center'>
+                <button className='flex justify-center items-center gap-1'>
+                  <span className='text-red-500'>
+                    {" "}
+                    <GrLogout />
+                  </span>
+                  <p className='text-red-500'>Logout</p>
+                </button>
+              </div>
             </li>
           </ul>
         </div>

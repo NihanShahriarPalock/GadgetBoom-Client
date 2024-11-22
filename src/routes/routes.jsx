@@ -15,6 +15,11 @@ import AddProducts from "../pages/dashboard/seller/AddProducts";
 import SellerRoute from "./SellerRoute";
 import BuyerRoute from "./BuyerRoute";
 import MyWishlist from "../pages/dashboard/buyer/MyWishlist";
+import AdminRoutes from "./AdminRoutes";
+import UpdateProduct from "../pages/dashboard/seller/UpdateProduct";
+import ProductDetails from "../pages/ProductDetails";
+import MyCartlist from "../pages/dashboard/buyer/MyCartlist";
+import AllUsersInfo from "../pages/dashboard/admin/AllUsersInfo";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +34,12 @@ export const router = createBrowserRouter([
       {
         path: "/products",
         element: <Products></Products>,
+      },
+      {
+        path: "/ProductDetails/:id",
+        element: <ProductDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/ProductDetails/${params.id}`),
       },
       {
         path: "/about",
@@ -69,6 +80,14 @@ export const router = createBrowserRouter([
           </BuyerRoute>
         ),
       },
+      {
+        path: "/dashboard/cartlist",
+        element: (
+          <BuyerRoute>
+           <MyCartlist></MyCartlist>
+          </BuyerRoute>
+        ),
+      },
 
       //Seller Routes
       {
@@ -85,6 +104,24 @@ export const router = createBrowserRouter([
           <SellerRoute>
             <AddProducts></AddProducts>
           </SellerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/productUpdate/:id",
+        element: (
+          <SellerRoute>
+            <UpdateProduct />
+          </SellerRoute>
+        ),
+      },
+
+      //Admin Routes
+      {
+        path: "/dashboard/all-users",
+        element: (
+          <AdminRoutes>
+            <AllUsersInfo></AllUsersInfo>
+          </AdminRoutes>
         ),
       },
     ],

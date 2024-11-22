@@ -4,55 +4,56 @@ import axios from "axios";
 import ProductCard from "../../../components/ProductCard";
 import Loading from "../../Loading";
 
-const MyWishlist = () => {
-  const [wishlist, setWishlist] = useState([]);
+const MyCartlist = () => {
+  const [cartlist, setCartlist] = useState([]);
   const userData = useUserData();
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("access-token");
   const [latestData, setLatestData] = useState(true);
 
   useEffect(() => {
-    const fetchWishlist = async () => {
+    const fetchCartlist = async () => {
       setLoading(true);
       await axios
-        .get(`http://localhost:4000/wishlist/${userData._id}`, {
+        .get(`http://localhost:4000/cartlist/${userData._id}`, {
           headers: {
             authorization: `Bearer ${token}`,
           },
         })
         .then((res) => {
-          setWishlist(res.data);
+          setCartlist(res.data);
           setLoading(false);
         });
     };
 
     if (userData._id && token) {
-      fetchWishlist();
+      fetchCartlist();
     }
   }, [token, userData._id, latestData]);
 
   return (
     <div>
-      <h1 className='text-2xl font-bold text-center'>My Wishlist</h1>
+      <h1 className='text-2xl font-bold text-center'>My Cart List</h1>
       <div>
         {loading ? (
           <Loading></Loading>
         ) : (
           <>
-            {wishlist.length > 0 ? (
+            {cartlist.length > 0 ? (
               <div className='grid grid-cols-3 gap-2'>
-                {wishlist.map((product) => (
+                {cartlist.map((product) => (
                   <ProductCard
                     product={product}
                     key={product._id}
-                    isInWishlist
+                        isInWishlist
+                        isInCartlist
                     setLatestData={setLatestData}
                   />
                 ))}
               </div>
             ) : (
               <div className='w-full h-full flex items-center justify-center'>
-                <h1>No products in your wishlist</h1>
+                <h1>No products in your cart list</h1>
               </div>
             )}
           </>
@@ -62,4 +63,4 @@ const MyWishlist = () => {
   );
 };
 
-export default MyWishlist;
+export default MyCartlist;
