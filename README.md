@@ -1,5 +1,7 @@
 # Gadget Boom 
 
+Click to visit [Gadget Boom](https://gadgetboom-d81aa.web.app/)
+
 Login as buyer 
 email : buyer@gmail.com
 password: Buyer@1234
