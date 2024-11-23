@@ -7,7 +7,7 @@ import useAuth from "../hooks/useAuth";
 
 
 const Navbar = () => {
-  // const [isOpen, setIsOpen] = useState(false);
+  
   const { user, Logout } = useAuth();
   const [open, setOpen] = useState(false);
   const [imageMenu, setImageMenu] = useState(false);
@@ -75,34 +75,6 @@ const Navbar = () => {
         <span>Contact</span>
       </NavLink>
 
-      {/* <div className='dropdown'>
-        <div
-          tabIndex={0}
-          role='button'
-          className='text-gray-900 text-lg mr-4 hover:underline hover:underline-offset-8     rounded-lg  px-5 py-3 '
-          onClick={() => setIsOpen(!isOpen)}>
-          My Profile
-        </div>
-        {isOpen && (
-          <ul
-            tabIndex={0}
-            className='dropdown-content z-50 menu mt-4 p-2 shadow  text-lg rounded-box w-48 bg-base-200  text-gray-900 pl-4 lg:pl-0 ml-16'>
-            <NavLink
-              to='/addVolunteer'
-              className='hover:underline text-center underline-offset-4 mb-4'
-              role='menuitem'>
-              Add Volunteer Post
-            </NavLink>
-
-            <NavLink
-              to='/manageMyPost'
-              className=' hover:underline text-center  underline-offset-4 mb-4'
-              role='menuitem'>
-              Manage My Post
-            </NavLink>
-          </ul>
-        )}
-      </div> */}
     </>
   );
 
