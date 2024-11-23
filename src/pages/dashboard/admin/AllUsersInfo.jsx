@@ -4,93 +4,90 @@ import useUserData from "../../../hooks/useUserData";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-
-
 const AllUsersInfo = () => {
-    const user  = useUserData();;
-      const [ausers, setAusers] = useState([]);
+  const user = useUserData();
+  const [ausers, setAusers] = useState([]);
 
-      useEffect(() => {
-        getData();
-      }, [user]);
+  useEffect(() => {
+    getData();
+  }, [user]);
 
-      const getData = async () => {
-        const { data } = await axios(`http://localhost:4000/all-users`, {
-          
-        });
-        setAusers(data);
-    };
-    
-    const handleChangeRole = async (id) => {
-      try {
-        const confirmed = await confirmChangeRole();
-        if (confirmed) {
-          const response = await axios.put(
-            `http://localhost:4000/user-update/${id}`
-          );
+  const getData = async () => {
+    const { data } = await axios(
+      `https://gadget-boom-server.vercel.app/all-users`,
+      {}
+    );
+    setAusers(data);
+  };
 
-          if (response.data.message === "User role updated successfully") {
-            toast.success("User role updated to 'seller'");
-            getData(); // Refresh data after the update
-          } else {
-            toast.error(response.data.message || "Failed to update user role");
-          }
+  const handleChangeRole = async (id) => {
+    try {
+      const confirmed = await confirmChangeRole();
+      if (confirmed) {
+        const response = await axios.put(
+          `https://gadget-boom-server.vercel.app/user-update/${id}`
+        );
+
+        if (response.data.message === "User role updated successfully") {
+          toast.success("User role updated to 'seller'");
+          getData(); // Refresh data after the update
+        } else {
+          toast.error(response.data.message || "Failed to update user role");
         }
-      } catch (error) {
-        toast.error(error.response?.data?.message || "An error occurred");
       }
-    };
+    } catch (error) {
+      toast.error(error.response?.data?.message || "An error occurred");
+    }
+  };
 
-    const confirmChangeRole = async () => {
-      return new Promise((resolve) => {
-        Swal.fire({
-          title: "Are you sure?",
-          text: "You want to change the user's role to 'seller'?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, Change Role",
-        }).then((result) => {
-          resolve(result.isConfirmed);
-        });
+  const confirmChangeRole = async () => {
+    return new Promise((resolve) => {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to change the user's role to 'seller'?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Change Role",
+      }).then((result) => {
+        resolve(result.isConfirmed);
       });
-    };
+    });
+  };
 
+  const handleDelete = async (id) => {
+    try {
+      const confirmed = await confirmDelete();
+      if (confirmed) {
+        // eslint-disable-next-line no-unused-vars
+        const { data } = await axios.delete(
+          `https://gadget-boom-server.vercel.app/user-delete/${id}`
+        );
 
-      const handleDelete = async (id) => {
-        try {
-          const confirmed = await confirmDelete();
-          if (confirmed) {
-            // eslint-disable-next-line no-unused-vars
-            const { data } = await axios.delete(
-              `http://localhost:4000/user-delete/${id}`
-            );
-           
-            toast.success("Delete Successful");
-            getData();
-          }
-        } catch (err) {
-    
-          toast.error(err.message);
-        }
-      };
+        toast.success("Delete Successful");
+        getData();
+      }
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
 
-      const confirmDelete = async () => {
-        return new Promise((resolve) => {
-          Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Delete It!",
-          }).then((result) => {
-            resolve(result.isConfirmed);
-          });
-        });
-      };
+  const confirmDelete = async () => {
+    return new Promise((resolve) => {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Delete It!",
+      }).then((result) => {
+        resolve(result.isConfirmed);
+      });
+    });
+  };
   return (
     <div>
       <div className='overflow-hidden bg-base-100 dark:bg-[#24292F] '>
@@ -100,7 +97,7 @@ const AllUsersInfo = () => {
           </h2>
           {ausers.length === 0 ? (
             <h2 className=' h-[40vh] flex justify-center items-center text-red-600 font-bold text-4xl underline underline-offset-[12px] italic'>
-              You Have Not Posted Anything Yet
+              No user yet
             </h2>
           ) : (
             <section className='container px-4 mx-auto'>
@@ -201,8 +198,7 @@ const AllUsersInfo = () => {
                                         toast.error(
                                           "You cannot delete an Admin"
                                         )
-                                      }
-                                      >
+                                      }>
                                       <svg
                                         xmlns='http://www.w3.org/2000/svg'
                                         fill='none'
@@ -253,6 +249,6 @@ const AllUsersInfo = () => {
       </div>
     </div>
   );
-}
+};
 
-export default AllUsersInfo
+export default AllUsersInfo;

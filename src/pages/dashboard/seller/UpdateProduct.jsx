@@ -1,74 +1,71 @@
-import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 // import useUserData from '../../../hooks/useUserData';
-import toast from 'react-hot-toast';
-import Swal from 'sweetalert2';
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const UpdateProduct = () => {
-      const { id } = useParams();
-      const navigate = useNavigate();
-    //   const  user  = useUserData();
-      const [product, setProduct] = useState({});
-   
-    //   console.log(user);
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-      useEffect(() => {
-        fetch(`http://localhost:4000/mySingleProduct/${id}`)
-          .then((res) => res.json())
-          .then((data) => {
-            // console.log(data);
-            setProduct(data);
-          });
-      }, [id]);
-    
-    
-      const handleFormSubmit = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const title = form.title.value;
-        const brand = form.brand.value;
-        const price = form.price.value;
-        const stock = form.stock.value;
-        const category = form.category.value;
-        const description = form.description.value;
-        const imageURL = form.imageURL.value;
+  const [product, setProduct] = useState({});
+
+ 
+
+  useEffect(() => {
+    fetch(`https://gadget-boom-server.vercel.app/mySingleProduct/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
        
-        
+        setProduct(data);
+      });
+  }, [id]);
 
-        const postData = {
-          title,
-          brand,
-          price,
-          stock,
-          category,
-          description,
-          imageURL,
-        };
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const title = form.title.value;
+    const brand = form.brand.value;
+    const price = form.price.value;
+    const stock = form.stock.value;
+    const category = form.category.value;
+    const description = form.description.value;
+    const imageURL = form.imageURL.value;
 
-        fetch(`http://localhost:4000/productUpdate/${id}`, {
-          method: "PUT",
-          headers: { "Content-type": "application/json" },
-          body: JSON.stringify(postData),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.modifiedCount > 0) {
-              Swal.fire({
-                title: "Success!",
-                text: "Product Updated Successfully",
-                icon: "success",
-                confirmButtonText: "Updated",
-              });
-              // toast.success("Data is updated");
-              navigate("/dashboard/my-products");
-            } else {
-              toast.error("Data is not updated");
-            }
-          })
-          .catch(() => {
-            toast.error("Error updating post");
+    const postData = {
+      title,
+      brand,
+      price,
+      stock,
+      category,
+      description,
+      imageURL,
+    };
+
+    fetch(`https://gadget-boom-server.vercel.app/productUpdate/${id}`, {
+      method: "PUT",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(postData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            title: "Success!",
+            text: "Product Updated Successfully",
+            icon: "success",
+            confirmButtonText: "Updated",
           });
-      };
+          // toast.success("Data is updated");
+          navigate("/dashboard/my-products");
+        } else {
+          toast.error("Data is not updated");
+        }
+      })
+      .catch(() => {
+        toast.error("Error updating post");
+      });
+  };
 
   return (
     <div>
@@ -170,6 +167,6 @@ const UpdateProduct = () => {
       )}
     </div>
   );
-}
+};
 
-export default UpdateProduct
+export default UpdateProduct;

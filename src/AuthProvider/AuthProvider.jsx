@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if (currentUser) {
         axios
-          .post(`http://localhost:4000/authentication`, {
+          .post(`https://gadget-boom-server.vercel.app/authentication`, {
             email: currentUser.email,
           })
           .then((data) => {

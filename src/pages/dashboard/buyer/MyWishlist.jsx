@@ -15,7 +15,7 @@ const MyWishlist = () => {
     const fetchWishlist = async () => {
       setLoading(true);
       await axios
-        .get(`http://localhost:4000/wishlist/${userData._id}`, {
+        .get(`https://gadget-boom-server.vercel.app/wishlist/${userData._id}`, {
           headers: {
             authorization: `Bearer ${token}`,
           },

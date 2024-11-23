@@ -4,7 +4,12 @@ import useUserData from "../hooks/useUserData";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ product, isInWishlist, isInCartlist, setLatestData }) => {
+const ProductCard = ({
+  product,
+  isInWishlist,
+  isInCartlist,
+  setLatestData,
+}) => {
   const userData = useUserData();
   // console.log(userData.role);
   const userEmail = userData.email;
@@ -21,7 +26,7 @@ const ProductCard = ({ product, isInWishlist, isInCartlist, setLatestData }) => 
     }
 
     await axios
-      .patch("http://localhost:4000/wishlist/add", {
+      .patch("https://gadget-boom-server.vercel.app/wishlist/add", {
         userEmail: userEmail,
         productId: product._id,
       })
@@ -37,34 +42,34 @@ const ProductCard = ({ product, isInWishlist, isInCartlist, setLatestData }) => 
         }
       });
   };
-   const handleCartlist = async () => {
-     if (userData.role === "seller" || userData.role === "admin") {
-       Swal.fire({
-         position: "center",
-         icon: "error",
-         title: "Sellers and Admins cannot add products to the cartlist.",
-         showConfirmButton: true,
-       });
-       return;
-     }
+  const handleCartlist = async () => {
+    if (userData.role === "seller" || userData.role === "admin") {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Sellers and Admins cannot add products to the cartlist.",
+        showConfirmButton: true,
+      });
+      return;
+    }
 
-     await axios
-       .patch("http://localhost:4000/cartlist/add", {
-         userEmail: userEmail,
-         productId: product._id,
-       })
-       .then((res) => {
-         if (res.data.modifiedCount) {
-           Swal.fire({
-             position: "center",
-             icon: "success",
-             title: "Product Added to Cartlist",
-             showConfirmButton: false,
-             timer: 1500,
-           });
-         }
-       });
-   };
+    await axios
+      .patch("https://gadget-boom-server.vercel.app/cartlist/add", {
+        userEmail: userEmail,
+        productId: product._id,
+      })
+      .then((res) => {
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Product Added to Cartlist",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
 
   const handleRemoveWishlist = async () => {
     if (userData.role === "seller" || userData.role === "admin") {
@@ -78,7 +83,7 @@ const ProductCard = ({ product, isInWishlist, isInCartlist, setLatestData }) => 
     }
 
     await axios
-      .patch("http://localhost:4000/wishlist/remove", {
+      .patch("https://gadget-boom-server.vercel.app/wishlist/remove", {
         userEmail: userEmail,
         productId: product._id,
       })
@@ -95,35 +100,35 @@ const ProductCard = ({ product, isInWishlist, isInCartlist, setLatestData }) => 
         }
       });
   };
-   const handleRemoveCartlist = async () => {
-     if (userData.role === "seller" || userData.role === "admin") {
-       Swal.fire({
-         position: "center",
-         icon: "error",
-         title: "Sellers and Admins cannot remove products from the wishlist.",
-         showConfirmButton: true,
-       });
-       return;
-     }
+  const handleRemoveCartlist = async () => {
+    if (userData.role === "seller" || userData.role === "admin") {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Sellers and Admins cannot remove products from the wishlist.",
+        showConfirmButton: true,
+      });
+      return;
+    }
 
-     await axios
-       .patch("http://localhost:4000/cartlist/remove", {
-         userEmail: userEmail,
-         productId: product._id,
-       })
-       .then((res) => {
-         if (res.data.modifiedCount) {
-           Swal.fire({
-             position: "center",
-             icon: "success",
-             title: "Product Removed from Cartlist",
-             showConfirmButton: false,
-             timer: 1500,
-           });
-           setLatestData((prev) => !prev);
-         }
-       });
-   };
+    await axios
+      .patch("https://gadget-boom-server.vercel.app/cartlist/remove", {
+        userEmail: userEmail,
+        productId: product._id,
+      })
+      .then((res) => {
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Product Removed from Cartlist",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          setLatestData((prev) => !prev);
+        }
+      });
+  };
 
   return (
     <div>

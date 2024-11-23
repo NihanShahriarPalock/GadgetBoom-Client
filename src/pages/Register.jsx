@@ -5,8 +5,6 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import GoogleLogin from "../components/socialLogin/GoogleLogin";
 
-
-
 const Register = () => {
   const { CreateUser } = useAuth();
   const navigate = useNavigate();
@@ -26,12 +24,23 @@ const Register = () => {
     const status = role === "buyer" ? "approved" : "pending";
     const wishlist = [];
     const cartlist = [];
-    const userData = { name, email, role, photoURL, status, wishlist, cartlist };
+    const userData = {
+      name,
+      email,
+      role,
+      photoURL,
+      status,
+      wishlist,
+      cartlist,
+    };
 
     try {
       // Create user
       await CreateUser(data.email, data.password);
-      const res = await axios.post("http://localhost:4000/users", userData);
+      const res = await axios.post(
+        "https://gadget-boom-server.vercel.app/users",
+        userData
+      );
       if (res.data.insertedId) {
         toast.success("Registration successful");
         navigate("/");
@@ -213,6 +222,6 @@ const Register = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Register
+export default Register;

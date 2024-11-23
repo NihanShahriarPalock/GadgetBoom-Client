@@ -1,37 +1,34 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const FeaturedProduct = () => {
   const [limitedData, setLimitedData] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`http://localhost:4000/products`);
-      
-      const data = await response.json();
-
-      // Check if data is an array
-      if (Array.isArray(data)) {
-        const slicedData = data.slice(0, 6); // Limit to 6 items
-        setLimitedData(slicedData);
-      } else {
-      
-        setLimitedData([]); // 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://gadget-boom-server.vercel.app/products`
+        );
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          const slicedData = data.slice(0, 6); 
+          setLimitedData(slicedData);
+        } else {
+          setLimitedData([]); 
+        }
+      } catch (error) {
+        setLimitedData([]);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-     
-      setLimitedData([]); // Set to empty on error
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
 
-  fetchData();
-}, []);
-
+    fetchData();
+  }, []);
 
   if (loading) {
     return (

@@ -4,60 +4,58 @@ import useAuth from "../../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-
 const AddProducts = () => {
-     const {
-       register,
-       handleSubmit,
-       
-       formState: { errors },
-     } = useForm();
+  const {
+    register,
+    handleSubmit,
+
+    formState: { errors },
+  } = useForm();
   const navigate = useNavigate();
-     const { user } = useAuth();
+  const { user } = useAuth();
 
-     const onSubmit = (data) => {
-       const title = data.title;
-       const brand = data.brand;
-       const imageURL = data.imageURL;
-       const price = parseFloat(data.price);
-       const stock = parseFloat(data.stock);
-       const category = data.category;
+  const onSubmit = (data) => {
+    const title = data.title;
+    const brand = data.brand;
+    const imageURL = data.imageURL;
+    const price = parseFloat(data.price);
+    const stock = parseFloat(data.stock);
+    const category = data.category;
 
-       const description = data.description;
-       const sellerEmail = user.email;
-       const product = {
-         title,
-         brand,
-         imageURL,
-         price,
-         stock,
-         category,
-         description,
-         sellerEmail,
-       };
+    const description = data.description;
+    const sellerEmail = user.email;
+    const product = {
+      title,
+      brand,
+      imageURL,
+      price,
+      stock,
+      category,
+      description,
+      sellerEmail,
+    };
 
-       const token = localStorage.getItem("access-token");
+    const token = localStorage.getItem("access-token");
 
-       axios
-         .post("http://localhost:4000/add-products", product, {
-           headers: {
-             authorization: `Bearer ${token}`,
-           },
-         })
-         .then((res) => {
-           if (res.data.insertedId) {
-             Swal.fire({
-               position: "center",
-               icon: "success",
-               title: "Product Added Successfully",
-               showConfirmButton: false,
-               timer: 1500,
-             });
-           }
-         });
-       navigate("/dashboard/my-products")
-       
-     };
+    axios
+      .post("https://gadget-boom-server.vercel.app/add-products", product, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Product Added Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+    navigate("/dashboard/my-products");
+  };
   return (
     <div className='w-full h-full lg:p-5'>
       <h1 className='text-center font-bold text-2xl py-6'>Add Products</h1>
@@ -175,6 +173,6 @@ const AddProducts = () => {
       </div>
     </div>
   );
-}
+};
 
-export default AddProducts
+export default AddProducts;

@@ -16,7 +16,7 @@ const Products = () => {
   const [category, setCategory] = useState("");
   const [uniqueBrand, setUniqueBrand] = useState([]);
   const [uniqueCategory, setUniqueCategory] = useState([]);
-  const [showFilters, setShowFilters] = useState(false); 
+  const [showFilters, setShowFilters] = useState(false);
 
   // Fetch products and filter data
   useEffect(() => {
@@ -24,7 +24,7 @@ const Products = () => {
     setError(null); // Reset error before fetching
     axios
       .get(
-        `http://localhost:4000/all-products?title=${search}&sort=${sort}&brand=${brand}&category=${category}`
+        `https://gadget-boom-server.vercel.app/all-products?title=${search}&sort=${sort}&brand=${brand}&category=${category}`
       )
       .then((res) => {
         setProducts(res.data.products);
@@ -56,7 +56,9 @@ const Products = () => {
 
   return (
     <div className='container mx-auto px-4'>
-      <h1 className='my-8 text-2xl font-semibold text-center'>All Products List</h1>
+      <h1 className='my-8 text-2xl font-semibold text-center'>
+        All Products List
+      </h1>
 
       {/* Search and Sort */}
       <div className='flex flex-col md:flex-row justify-between items-center w-full mb-6 gap-4'>

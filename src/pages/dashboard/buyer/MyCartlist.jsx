@@ -15,7 +15,7 @@ const MyCartlist = () => {
     const fetchCartlist = async () => {
       setLoading(true);
       await axios
-        .get(`http://localhost:4000/cartlist/${userData._id}`, {
+        .get(`https://gadget-boom-server.vercel.app/cartlist/${userData._id}`, {
           headers: {
             authorization: `Bearer ${token}`,
           },
@@ -32,7 +32,7 @@ const MyCartlist = () => {
   }, [token, userData._id, latestData]);
 
   return (
-    <div className="mt-6 lg:mt-8">
+    <div className='mt-6 lg:mt-8'>
       <h1 className='text-3xl font-bold text-center pb-2'>My Cart List</h1>
       <div>
         {loading ? (
@@ -45,8 +45,8 @@ const MyCartlist = () => {
                   <ProductCard
                     product={product}
                     key={product._id}
-                        isInWishlist
-                        isInCartlist
+                    isInWishlist
+                    isInCartlist
                     setLatestData={setLatestData}
                   />
                 ))}

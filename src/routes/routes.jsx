@@ -39,7 +39,9 @@ export const router = createBrowserRouter([
         path: "/ProductDetails/:id",
         element: <ProductDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/ProductDetails/${params.id}`),
+          fetch(
+            `https://gadget-boom-server.vercel.app/ProductDetails/${params.id}`
+          ),
       },
       {
         path: "/about",
@@ -84,7 +86,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/cartlist",
         element: (
           <BuyerRoute>
-           <MyCartlist></MyCartlist>
+            <MyCartlist></MyCartlist>
           </BuyerRoute>
         ),
       },

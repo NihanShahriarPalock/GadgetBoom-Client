@@ -34,8 +34,7 @@ const Slider = () => {
               <div className='absolute inset-0 flex justify-center items-center'>
                 <div className='text-center'>
                   <p className='text-6xl text-white '>
-                    Make a Difference in Society <br /> Volunteer with Passion &
-                    Purpose!
+                    Welcome to Gadget Boom <br /> Buy all your necessary gadgets
                   </p>
                 </div>
               </div>
@@ -49,8 +48,8 @@ const Slider = () => {
               <div className='absolute inset-0 flex justify-center items-center'>
                 <div className='text-center'>
                   <p className='text-6xl text-white '>
-                    Make a Difference in Society <br /> Volunteer with Passion &
-                    Purpose!
+                   
+                    
                   </p>
                 </div>
               </div>
@@ -63,8 +62,7 @@ const Slider = () => {
               <div className='absolute inset-0 flex justify-center items-center'>
                 <div className='text-center'>
                   <p className='text-6xl text-white '>
-                    Start your journey with us <br /> and be part of something
-                    meaningful
+                   
                   </p>
                 </div>
               </div>

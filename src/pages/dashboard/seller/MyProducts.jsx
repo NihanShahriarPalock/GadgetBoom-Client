@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
@@ -8,73 +9,72 @@ import { Link } from "react-router-dom";
 const MyProducts = () => {
   const { user } = useAuth();
   const [products, setProducts] = useState([]);
-useEffect(() => {
-  const token = localStorage.getItem("access-token");
-  if (user?.email && token) {
-    console.log("User and token ready");
-    getData();
-  } else {
-    console.error("Missing user email or token");
-  }
-}, [user]);
-  
-const getData = async () => {
-  try {
-    const token = localStorage.getItem("access-token"); // Retrieve token from storage
-    if (!token) {
-      console.error("No token found");
-      return;
+  useEffect(() => {
+    const token = localStorage.getItem("access-token");
+    if (user?.email && token) {
+     
+      getData();
+    } else {
+      // console.error("Missing user email or token");
     }
+  }, [user]);
 
-    const { data } = await axios.get(
-      `http://localhost:4000/myProducts/${user?.email}`,
-      {
-        headers: {
-          authorization: `Bearer ${token}`, // Include token in the header
-        },
+  const getData = async () => {
+    try {
+      const token = localStorage.getItem("access-token"); 
+      if (!token) {
+        // console.error("No token found");
+        return;
       }
-    );
-    console.log("Fetched Products:", data);
-    setProducts(Array.isArray(data) ? data : []);
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    setProducts([]);
-  }
-};
 
-
-    const handleDelete = async (id) => {
-      try {
-        const confirmed = await confirmDelete();
-        if (confirmed) {
-          const { data } = await axios.delete(
-            `http://localhost:4000/myProduct/${id}`
-          );
-          console.log(data);
-          toast.success("Delete Successful");
-          getData();
+      const { data } = await axios.get(
+        `https://gadget-boom-server.vercel.app/myProducts/${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`, 
+          },
         }
-      } catch (err) {
-        // console.log(err.message);
-        toast.error(err.message);
-      }
-    };
+      );
+      
+      setProducts(Array.isArray(data) ? data : []);
+    } catch (error) {
+      // console.error("Error fetching products:", error);
+      setProducts([]);
+    }
+  };
 
-    const confirmDelete = async () => {
-      return new Promise((resolve) => {
-        Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, Delete It!",
-        }).then((result) => {
-          resolve(result.isConfirmed);
-        });
+  const handleDelete = async (id) => {
+    try {
+      const confirmed = await confirmDelete();
+      if (confirmed) {
+        const { data } = await axios.delete(
+          `https://gadget-boom-server.vercel.app/myProduct/${id}`
+        );
+        
+        toast.success("Delete Successful");
+        getData();
+      }
+    } catch (err) {
+    
+      toast.error(err.message);
+    }
+  };
+
+  const confirmDelete = async () => {
+    return new Promise((resolve) => {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Delete It!",
+      }).then((result) => {
+        resolve(result.isConfirmed);
       });
-    };
+    });
+  };
   return (
     <div className='overflow-hidden bg-base-100 dark:bg-[#24292F] '>
       <div className='px-2 lg:px-24 mx-auto py-5'>
@@ -205,10 +205,9 @@ const getData = async () => {
             </div>
           </section>
         )}
-       
       </div>
     </div>
   );
-}
+};
 
-export default MyProducts
+export default MyProducts;
