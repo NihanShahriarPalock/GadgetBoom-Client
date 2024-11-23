@@ -1,8 +1,21 @@
-# React + Vite
+# Gadget Boom 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Login as buyer 
+email : buyer@gmail.com
+password: Buyer@1234
 
-Currently, two official plugins are available:
+Login as seller
+email: seller@gmail.com
+password: Seller@1234
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Login as admin 
+email: admin@gmail.com
+password: Admin@1234
+
+Features of the application
+* Buyer can sort, search, and filter of products
+* Buyer can add products to their wishlist or cart list
+* Seller can add, update, and delete their product
+* Admin can change users role or block them
+
+
