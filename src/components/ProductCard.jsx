@@ -128,8 +128,8 @@ const ProductCard = ({ product, isInWishlist, isInCartlist, setLatestData }) => 
   return (
     <div>
       <div>
-        <section className='bg-base-100 dark:bg-[#24292F] '>
-          <div className='container px-6 py-10 mx-auto'>
+        <section className='bg-base-100  '>
+          <div className='container px-1 lg:px-6 py-4 lg:py-10 mx-auto'>
             <div>
               <img
                 className='relative z-10 object-cover w-full rounded-md h-96'
@@ -137,22 +137,22 @@ const ProductCard = ({ product, isInWishlist, isInCartlist, setLatestData }) => 
                 alt=''
               />
 
-              <div className='relative z-20 max-w-lg p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900'>
-                <p className='font-semibold text-gray-800 dark:text-white md:text-xl'>
+              <div className='relative z-20 max-w-lg p-6 mx-auto -mt-5 lg:-mt-20 bg-white rounded-md shadow '>
+                <p className='font-semibold text-gray-800  md:text-xl'>
                   {product.title}
                 </p>
-                <p className='mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm'>
+                <p className='mt-3 text-sm text-gray-500  md:text-sm'>
                   Brand : {product.brand}
                 </p>
 
-                <p className='mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm'>
+                <p className='mt-3 text-sm text-gray-500  md:text-sm'>
                   Category : {product.category}
                 </p>
-                <p className='mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm'>
+                <p className='mt-3 text-sm text-gray-500  md:text-sm'>
                   Price : {product.price}
                 </p>
 
-                <p className='mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm'>
+                <p className='mt-3 text-sm text-gray-500  md:text-sm'>
                   Stock : {product.stock}
                 </p>
 

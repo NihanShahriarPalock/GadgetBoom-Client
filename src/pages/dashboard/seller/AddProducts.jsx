@@ -59,8 +59,8 @@ const AddProducts = () => {
        
      };
   return (
-    <div className='w-full h-full'>
-      <h1 className='text-center font-bold text-2xl'>Add Products</h1>
+    <div className='w-full h-full lg:p-5'>
+      <h1 className='text-center font-bold text-2xl py-6'>Add Products</h1>
       <div className='w-full h-full'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='lg:flex gap-8 w-full'>

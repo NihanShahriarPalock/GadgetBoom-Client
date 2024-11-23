@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import useUserData from "../../hooks/useUserData";
-import { MdOutlineInventory2, MdOutlineShoppingCart, MdPeopleOutline } from "react-icons/md";
+import { MdOutlineHome, MdOutlineInventory2, MdOutlineShoppingCart, MdPeopleOutline } from "react-icons/md";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import useAuth from "../../hooks/useAuth";
 import { FaRegHeart } from "react-icons/fa";
 import { GrLogout } from "react-icons/gr";
+import { CgProfile } from "react-icons/cg";
 
 
 const buyerRoutes = [
@@ -119,7 +120,10 @@ const Sidebar = () => {
               <NavLink
                 to='/dashboard/overview'
                 className='flex gap-1 justify-center items-center'>
-                <span>Overview</span>
+                <span>
+                  <CgProfile />
+                </span>
+                <span>Profile</span>
               </NavLink>
             </li>
             {/* Other menu items */}
@@ -127,6 +131,9 @@ const Sidebar = () => {
               <NavLink
                 to='/'
                 className='flex gap-1 justify-center items-center'>
+                <span>
+                  <MdOutlineHome />
+                </span>
                 <span>Home</span>
               </NavLink>
             </li>

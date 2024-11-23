@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import useUserData from '../../../hooks/useUserData';
+// import useUserData from '../../../hooks/useUserData';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
 
 const UpdateProduct = () => {
       const { id } = useParams();
       const navigate = useNavigate();
-      const  user  = useUserData();
+    //   const  user  = useUserData();
       const [product, setProduct] = useState({});
    
     //   console.log(user);

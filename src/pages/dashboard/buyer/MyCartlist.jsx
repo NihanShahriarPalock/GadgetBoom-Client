@@ -32,15 +32,15 @@ const MyCartlist = () => {
   }, [token, userData._id, latestData]);
 
   return (
-    <div>
-      <h1 className='text-2xl font-bold text-center'>My Cart List</h1>
+    <div className="mt-6 lg:mt-8">
+      <h1 className='text-3xl font-bold text-center pb-2'>My Cart List</h1>
       <div>
         {loading ? (
           <Loading></Loading>
         ) : (
           <>
             {cartlist.length > 0 ? (
-              <div className='grid grid-cols-3 gap-2'>
+              <div className='grid grid-cols-1 lg:grid-cols-3 gap-2'>
                 {cartlist.map((product) => (
                   <ProductCard
                     product={product}
@@ -52,7 +52,7 @@ const MyCartlist = () => {
                 ))}
               </div>
             ) : (
-              <div className='w-full h-full flex items-center justify-center'>
+              <div className='min-w-full w-full min-h-screen flex items-center justify-center'>
                 <h1>No products in your cart list</h1>
               </div>
             )}

@@ -1,11 +1,11 @@
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 
 const ProductDetails = () => {
-      const navigate = useNavigate();
+     
       const data = useLoaderData();
       const {
-        _id,
+        
         title,
         brand,
         price,
@@ -62,7 +62,7 @@ const ProductDetails = () => {
             {" "}
             <Link
               to='/products'
-              //   onClick={checkVolunteersNeeded}
+             
               className=' bg-red-400  px-4 py-2 rounded-md text-gray-900   hover:bg-red-500 text-lg w-full'>
               Back to Products Page
             </Link>
